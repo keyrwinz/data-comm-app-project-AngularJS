@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cpe410">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Final Project (CPE 410)</title>
+    <!-- Angular JS -->
+    <script src="../vendor/jquery/angular.min.js"></script>
+    <script src="../vendor/jquery/cpe410.js"></script>
+    <script src="../vendor/jquery/plotly.min.js"></script>
+    <link rel="icon" href="../img/icon2.png">
+    <!-- Bootstrap core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/fonts/fonts1.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/fonts/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="../css/cpe410.css" rel="stylesheet">
+</head>
+<body id="body2" ng-controller="cpe410Ctrl">
+    <div id="site-wrapper-inner" class="container-fluid">
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="inner">
+                <center><h3>CPE410|Principles Of Communication</h3></center>
+                <center><h1>Final Project</h1></center>
+            </div>
+            <div class="container-fluid">
+                <div id="formsAndGraphs">
+                    <div class="row" id="inputs">
+                        <div id="inputCode" class="container-fluid">
+                            <form>
+                                <label for="name">Data Codes: </label>
+                                <input ng-keyup="$event.keyCode == 13 ? solve() : null" ng-model="DataCode" type="text" minlength="5" maxlength="10" required="">
+                                <div class="popup" onclick="myFunction()">
+                                    <i class="fa fa-info-circle" style="font-size:18px"></i>
+                                    <span class="popuptext" id="myPopup">Min: 5 characters  Max: 10 characters</span>
+                                </div><br>
+                            </form>
+                            <span style="color:red">
+                                {{ text }}
+                            </span><br>
+                            ASCII Code:
+                                <span ng-repeat="ascii in AsciiCode track by $index">
+                                    {{ ascii }}
+                                </span><br>
+                            Number Systems:<br>
+                            Hex:
+                                <span ng-repeat="hex in Hexadecimal track by $index">
+                                    {{ hex }}
+                                </span><br>
+                            Binary:
+                                <span ng-repeat="bin in Binary track by $index">
+                                    {{ bin }}
+                                </span><br>
+                            LSB-LSb:
+                                <span ng-repeat="endian in endianBin track by $index">
+                                    {{ endian }}
+                                </span>
+                        </div>
+                    </div><br>
+                    <div class="">
+                        <form class="form-horizontal" role="form" ng-submit="solve()">
+                            <button type="submit" class="btn btn-default" aria-label="my button" style="padding:5px 10px;border: 1px solid gray;
+                                   border-radius: 5px; max-width: 200px; margin: 0 auto;">
+                                   <span class="fa fa-bar-chart" style="font-size:20px;color:black;vertical-align: middle;"></span>
+                                   <span style="color: black">Generate Graph</span>
+                            </button>
+                        </form>
+                    </div><br>
+                    <div class="graph" style="margin-top: 20px;">
+                        Data (MANCHESTER):
+                                <span ng-repeat="endian in endianBin track by $index">
+                                    {{ endian }}
+                                </span><br>
+                        <center>
+                            <span><i class="fa fa-minus" style="font-size:20px;color:#238cbc"></i> Manchester Code (Signals: 0 = 0 to V, 1 = V to 0)</span>
+                            <canvas id="ManchesterCode"></canvas>
+                        </center>
+                    </div>
+                    <div class="graph" style="margin-top: 100px;">
+                        Data (POLAR RZ SCHEME):
+                                <span ng-repeat="endian in endianBin track by $index">
+                                    {{ endian }}
+                                </span><br>
+                        <center>
+                            <span><i class="fa fa-minus" style="font-size:20px;color:red"></i> Polar RZ Scheme (Signals: 0 = -V to 0, 1 = V to 0)</span>
+                            <canvas id="PolarRZ"></canvas>
+                        </center>
+                    </div>
+                    <div class="graph" style="margin-top: 100px;">
+                        Data (2B1Q SCHEME):
+                                <span ng-repeat="endian in endianBin track by $index">
+                                    {{ endian }}
+                                </span><br>
+                        <center>
+                            <span><i class="fa fa-minus" style="font-size:20px;color:red"></i> 2B1Q Scheme</span>
+                            <canvas id="BBQ"></canvas>
+                        </center>
+                        <center>
+                            <img src="../img/transitiontable.png">
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript -->
+    <script>
+        // When the user clicks on <div>, open the popup
+        function myFunction() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+        }
+    </script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/popper.min.js"></script>
+    <script src="../vendor/bootstrap/js/main.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
